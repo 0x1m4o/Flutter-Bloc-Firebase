@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_firebase/bloc/counter_bloc.dart';
+import '../cubit/counter_cubit.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final counterCu = BlocProvider.of<CounterBloc>(context);
+    // final counterCu = BlocProvider.of<CounterCubit>(context);
 
     // Above same as Below
 
-    final counterCu = context.read<CounterBloc>();
+    final counterCu = context.read<CounterCubit>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
@@ -20,13 +20,13 @@ class HomePage extends StatelessWidget {
           children: [
             // Set the listen to true so you can mantain the changes value.
             Text(
-                'method : listen: true ${BlocProvider.of<CounterBloc>(context, listen: true).state.counter}'),
+                'method : listen: true ${BlocProvider.of<CounterCubit>(context, listen: true).state.counter}'),
 
             // Or
 
             // Use the BlocBuilder to create an area that listen to changes.
 
-            BlocBuilder<CounterBloc, CounterState>(
+            BlocBuilder<CounterCubit, CounterState>(
               builder: (context, state) {
                 return Text('method : BlocBuilder ${state.counter}');
               },
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
             // Example if the current value is 5 the UI will display the message -
             // that the value is max and etc
 
-            BlocListener<CounterBloc, CounterState>(
+            BlocListener<CounterCubit, CounterState>(
               listener: (context, state) {
                 if (state.counter == 5) {
                   showDialog(
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                   );
                 }
               },
-              child: BlocBuilder<CounterBloc, CounterState>(
+              child: BlocBuilder<CounterCubit, CounterState>(
                 builder: (context, state) {
                   return Text(
                       'method : BlocBuilder wrapped with BlocListener ${state.counter}');
@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
             // The simple ways to make it listener and builder is using -
             // BlocConsumer because in the BlocConsumer widget it has listener -
             // and builder.
-            BlocConsumer<CounterBloc, CounterState>(
+            BlocConsumer<CounterCubit, CounterState>(
               listener: (context, state) {
                 if (state.counter == 5) {
                   showDialog(
@@ -104,10 +104,10 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
-                    onPressed: () => counterCu.add(DecrementCounterEvent()),
+                    onPressed: () => counterCu.decrement(),
                     child: Icon(Icons.remove)),
                 OutlinedButton(
-                    onPressed: () => counterCu.add(IncrementCounterEvent()),
+                    onPressed: () => counterCu.increment(),
                     child: Icon(Icons.add))
               ],
             )

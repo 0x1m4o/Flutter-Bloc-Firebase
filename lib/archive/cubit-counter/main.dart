@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_firebase/bloc/counter_bloc.dart';
-import 'package:flutter_bloc_firebase/pages/homepage.dart';
+import './cubit/counter_cubit.dart';
+import './pages/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,10 +9,12 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CounterBloc>(
-      create: (context) => CounterBloc(),
+    return BlocProvider(
+      create: (context) => CounterCubit(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
