@@ -19,7 +19,6 @@ class HomePage extends StatelessWidget {
           ElevatedButton(
               onPressed: () {
                 colorCu.changeColor();
-                print('ini colorstate ${colorCu.state.color}');
               },
               child: Text('Change Theme')),
           Text(
