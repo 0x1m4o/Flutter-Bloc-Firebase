@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      counterCu.add(ChangeCounterEvent());
+                      counterCu.add(ChangeCounterEvent(incrementSize: incrementSize));
                     },
                     child: Text('Increment')),
               ]))),

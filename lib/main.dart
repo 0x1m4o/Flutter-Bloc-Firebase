@@ -18,8 +18,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ColorBloc(),
         ),
         BlocProvider<CounterBloc>(
-          create: (context) =>
-              CounterBloc(colorBloc: context.read<ColorBloc>()),
+          create: (context) => CounterBloc(),
         ),
       ],
       child: MaterialApp(
