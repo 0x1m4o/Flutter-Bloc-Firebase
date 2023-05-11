@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubits/color/color_bloc.dart';
-import '../cubits/counter/counter_bloc.dart';
+import './cubits/counter/counter_cubit.dart';
+import './cubits/color/color_cubit.dart';
 import 'package:flutter_bloc_firebase/pages/homepage.dart';
 
 void main() {
@@ -14,12 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ColorBloc>(
-          create: (context) => ColorBloc(),
+        BlocProvider<ColorCubit>(
+          create: (context) => ColorCubit(),
         ),
-        BlocProvider<CounterBloc>(
-          create: (context) =>
-              CounterBloc(colorBloc: context.read<ColorBloc>()),
+        BlocProvider<CounterCubit>(
+          create: (context) => CounterCubit(),
         ),
       ],
       child: MaterialApp(

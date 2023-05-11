@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubits/color/color_bloc.dart';
-import '../cubits/counter/counter_bloc.dart';
-
+import '../cubits/color/color_cubit.dart';
+import '../cubits/counter/counter_cubit.dart';
 
 class HomePage extends StatelessWidget {
   int incrementSize = 1;
   @override
   Widget build(BuildContext context) {
-    final colorCu = context.read<ColorBloc>();
-    final counterCu = context.read<CounterBloc>();
-    return BlocListener<ColorBloc, ColorState>(
+    final colorCu = context.read<ColorCubit>();
+    final counterCu = context.read<CounterCubit>();
+    return BlocListener<ColorCubit, ColorState>(
       listener: (context, state) {
         if (state.color == Colors.red) {
           incrementSize = 1;
@@ -23,7 +22,7 @@ class HomePage extends StatelessWidget {
         }
       },
       child: Scaffold(
-          backgroundColor: context.watch<ColorBloc>().state.color,
+          backgroundColor: context.watch<ColorCubit>().state.color,
           appBar: AppBar(
             title: Text('Home Page'),
           ),
@@ -33,16 +32,16 @@ class HomePage extends StatelessWidget {
                   children: [
                 ElevatedButton(
                     onPressed: () {
-                      colorCu.add(ChangeColorEvent());
+                      colorCu.changeColor();
                     },
                     child: Text('Change Theme')),
                 Text(
-                  '${context.watch<CounterBloc>().state.counter}',
+                  '${context.watch<CounterCubit>().state.count}',
                   style: TextStyle(color: Colors.white),
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      counterCu.add(ChangeCounterEvent());
+                      counterCu.changeCounter(incrementSize);
                     },
                     child: Text('Increment')),
               ]))),

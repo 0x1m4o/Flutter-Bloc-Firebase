@@ -1,24 +1,25 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-
-part of 'counter_bloc.dart';
+part of 'counter_cubit.dart';
 
 class CounterState extends Equatable {
-  int counter;
+  final int count;
   CounterState({
-    required this.counter,
+    required this.count,
   });
 
   factory CounterState.initial() {
-    return CounterState(counter: 1);
+    return CounterState(count: 0);
   }
+
   @override
-  List<Object> get props => [counter];
+  // TODO: implement props
+  List<Object?> get props => [count];
 
   CounterState copyWith({
-    int? counter,
+    int? count,
   }) {
     return CounterState(
-      counter: counter ?? this.counter,
+      count: count ?? this.count,
     );
   }
 

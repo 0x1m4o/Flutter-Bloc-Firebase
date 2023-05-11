@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-
-part of 'color_bloc.dart';
+part of 'color_cubit.dart';
 
 class ColorState extends Equatable {
   final Color color;
@@ -11,9 +10,10 @@ class ColorState extends Equatable {
   factory ColorState.initial() {
     return ColorState(color: Colors.red);
   }
+
   @override
   // TODO: implement props
-  List<Object> get props => [color];
+  List<Object?> get props => [color];
 
   ColorState copyWith({
     Color? color,
@@ -22,4 +22,7 @@ class ColorState extends Equatable {
       color: color ?? this.color,
     );
   }
+
+  @override
+  bool get stringify => true;
 }
