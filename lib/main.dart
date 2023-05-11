@@ -20,15 +20,35 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      routes: {
-        '/': (context) => BlocProvider.value(
-              value: counterCubit,
-              child: HomePage(),
-            ),
-        '/counter': (context) => BlocProvider.value(
-              value: counterCubit,
-              child: const CounterPage(),
-            )
+      // routes: {
+      //   '/': (context) => BlocProvider.value(
+      //         value: counterCubit,
+      //         child: HomePage(),
+      //       ),
+      //   '/counter': (context) => BlocProvider.value(
+      //         value: counterCubit,
+      //         child: const CounterPage(),
+      //       )
+      // },
+
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+          return MaterialPageRoute(
+              builder: (context) => BlocProvider.value(
+                    value: counterCubit,
+                    child: HomePage(),
+                  ));
+
+          case '/counter':
+            return MaterialPageRoute(
+                builder: (context) => BlocProvider.value(
+                      value: counterCubit,
+                      child: CounterPage(),
+                    ));
+          default:
+            return null;
+        }
       },
     );
   }
