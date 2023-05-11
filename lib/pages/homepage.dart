@@ -8,27 +8,20 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Home Page'),
+          title: const Text('Home Page'),
         ),
         body: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) {
-                    return BlocProvider.value(
-                      value: BlocProvider.of<CounterCubit>(context),
-                      child: CounterPage(),
-                    );
-                  },
-                ));
+                Navigator.pushNamed(context, '/counter');
               },
-              child: Text('Go To Counter Page')),
+              child: const Text('Go To Counter Page')),
           ElevatedButton(
               onPressed: () =>
                   BlocProvider.of<CounterCubit>(context).increment(),
-              child: Text('Increment the counter value')),
+              child: const Text('Increment the counter value')),
         ])));
   }
 }
