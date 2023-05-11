@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_firebase/cubits/color/color_bloc.dart';
+import '../color/color_bloc.dart';
 
 part 'counter_event.dart';
 part 'counter_state.dart';
