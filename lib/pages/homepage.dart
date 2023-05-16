@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_firebase/cubit/counter_cubit.dart';
 import 'package:flutter_bloc_firebase/pages/counter.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,17 +10,7 @@ class HomePage extends StatelessWidget {
           title: const Text('Home Page'),
         ),
         body: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/counter');
-              },
-              child: const Text('Go To Counter Page')),
-          ElevatedButton(
-              onPressed: () =>
-                  BlocProvider.of<CounterCubit>(context).increment(),
-              child: const Text('Increment the counter value')),
-        ])));
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center, children: [])));
   }
 }
